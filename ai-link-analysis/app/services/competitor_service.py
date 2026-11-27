@@ -1,3 +1,12 @@
+# Normalizes competitor brand names and domains,
+# sanitizes website URLs to scheme://host (or None),
+# and rejects raw IP addresses or invalid URLs.
+
+# Filters out the target brand itself (by normalized name or domain)
+# and deduplicates entries by name and host up to a configurable limit.
+
+# Forces source="ai
+
 """Competitor cleanup. Competitors are AI suggestions: never verified, always labelled."""
 
 import ipaddress
