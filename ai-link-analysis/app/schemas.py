@@ -163,9 +163,14 @@ class LLMAnalysisResult(BaseModel):
 
 # ---------- Response ----------
 class AnalysisMeta(BaseModel):
+    provider: str
     model_used: str
+    input_tokens: int | None = None
+    output_tokens: int | None = None
+    pages_analyzed: int = 1
     cached: bool = False
     processing_ms: int
+    warnings: list[str] = []
 
 
 class LinkAnalysisResponse(BaseModel):
