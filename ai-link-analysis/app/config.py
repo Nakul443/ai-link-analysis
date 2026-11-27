@@ -52,6 +52,13 @@ class Settings(BaseSettings):
     # Cache
     cache_ttl_seconds: int = 3600
 
+    # API behaviour
+    rate_limit_per_minute: int = 6  # uncached analyses per IP per minute (0 = off)
+    max_concurrent_analyses: int = 2
+    analysis_timeout_seconds: float = 120
+    cache_max_entries: int = 200
+    trust_proxy: bool = False  # true behind Render/Railway/etc. (see D2)
+
     # CORS
     cors_origins: str = "http://localhost:5173,http://localhost:3000"
 

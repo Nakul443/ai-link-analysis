@@ -181,11 +181,23 @@ async def test_retries_on_rate_limit(monkeypatch):
 
     def handler(req):
         calls["n"] += 1
-        return httpx.Response(429) if calls["n"] == 1 else openai_ok(TOY)
+        return httpx.Response(503) if calls["n"] == 1 else openai_ok(TOY)
 
     async with client_for(handler) as c:
         out = await generate_json("sys", "user", Toy, client=c)
     assert out.attempts == 2
+
+
+async def test_rate_limit_goes_straight_to_fallback(monkeypatch):
+    use_settings(monkeypatch, llm_max_retries=2, llm_fallback_model="fb")
+
+    def handler(req):
+        model = json.loads(req.content)["model"]
+        return httpx.Response(429) if model == "primary" else openai_ok(TOY)
+
+    async with client_for(handler) as c:
+        out = await generate_json("sys", "user", Toy, client=c)
+    assert out.used_fallback is True and out.attempts == 2
 
 
 async def test_repairs_invalid_json_once(monkeypatch):

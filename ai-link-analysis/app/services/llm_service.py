@@ -68,7 +68,7 @@ class LLMTruncatedError(LLMInvalidResponseError):
     code = "LLM_TRUNCATED"
 
 
-RETRYABLE = (LLMTimeoutError, LLMRateLimitError, LLMUnavailableError)
+RETRYABLE = (LLMTimeoutError, LLMUnavailableError)  # 429 -> go to fallback, don't retry
 
 
 # ---------- Data ----------
@@ -282,10 +282,10 @@ async def _call_with_retries(
     last: LLMError | None = None
     for attempt in range(s.llm_max_retries + 1):
         started = time.perf_counter()
+        usage.calls += 1
         try:
             text, tin, tout = await adapter(client, cfg, system, user, s)
         except RETRYABLE as exc:
-            usage.calls += 1
             last = exc
             logger.warning(
                 "LLM call failed (%s) provider=%s model=%s attempt=%d",
@@ -297,7 +297,6 @@ async def _call_with_retries(
             if attempt < s.llm_max_retries:
                 await asyncio.sleep(RETRY_BACKOFF_BASE * (2**attempt))
             continue
-        usage.calls += 1
         usage.input_tokens += tin or 0
         usage.output_tokens += tout or 0
         logger.info(
