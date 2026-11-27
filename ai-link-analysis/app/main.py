@@ -1,3 +1,5 @@
+# Creates the FastAPI app
+
 import logging
 
 from fastapi import FastAPI

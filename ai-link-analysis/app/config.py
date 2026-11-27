@@ -38,6 +38,11 @@ class Settings(BaseSettings):
     fetch_max_bytes: int = 2_000_000
     fetch_max_redirects: int = 3
     max_content_chars: int = 12_000
+    extra_pages_max: int = 2
+    user_agent: str = (
+        "Mozilla/5.0 (compatible; AILinkAnalysisBot/1.0; "
+        "+https://github.com/YOUR_USERNAME/ai-link-analysis)"
+    )
 
     # Cache
     cache_ttl_seconds: int = 3600
