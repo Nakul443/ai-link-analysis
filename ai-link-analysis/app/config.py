@@ -32,6 +32,11 @@ class Settings(BaseSettings):
     llm_fallback_model: str = ""
     llm_timeout_seconds: int = 60
     llm_max_retries: int = 2
+    llm_max_output_tokens: int = 6000
+    llm_temperature: float = 0.2
+    # Optional fallback. Empty provider/key = reuse the primary ones.
+    llm_fallback_provider: str = ""
+    llm_fallback_api_key: str = Field(default="", repr=False)
 
     # Fetching
     fetch_timeout_seconds: int = 15

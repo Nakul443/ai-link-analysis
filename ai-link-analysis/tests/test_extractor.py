@@ -1,6 +1,14 @@
+# Async pytest tests for extract_website using mocked HTTP responses and
+# fake public DNS resolution to test HTML parsing and text cleanup.
+
+# Checks extra subpage fetching, skipping failed subpages,
+# prompt text length limits, and blocking redirects to internal IP addresses.
+
+# Verifies proper error handling for redirect loops, forbidden pages,
+# non-HTML files, timeouts, and pages with too little content.
+
 import httpx
 import pytest
-
 from app.services.website_extractor import (
     InsufficientContentError,
     SiteAccessRestrictedError,
