@@ -1,0 +1,230 @@
+{
+  "success": true,
+  "website": "https://example.com/",
+  "brand": {
+    "name": "Acme Plumbing",
+    "category": "Home services",
+    "summary": "Plumbers in Austin."
+  },
+  "analysis": {
+    "competitor_analysis": {
+      "brand_overview": "Local plumbing company.",
+      "business_category": "Plumbing",
+      "main_products_services": [
+        "Drain cleaning"
+      ],
+      "your_brand": {
+        "brand_name": "Acme Plumbing",
+        "main_service": "Plumbing",
+        "target_market": "Austin homes",
+        "key_strength": "Fast",
+        "opportunity": "Reviews"
+      },
+      "competitors": [
+        {
+          "brand_name": "Roto-Rooter",
+          "main_service": "Plumbing",
+          "target_market": "Homes",
+          "key_strength": "Brand",
+          "opportunity": "Reviews",
+          "website": "roto-rooter.com/plumbing?x=1",
+          "strengths": [
+            "a"
+          ],
+          "weaknesses": [
+            "b"
+          ],
+          "source": "ai_suggested"
+        },
+        {
+          "brand_name": "Roto Rooter",
+          "main_service": "Plumbing",
+          "target_market": "Homes",
+          "key_strength": "Brand",
+          "opportunity": "Reviews",
+          "website": "https://www.roto-rooter.com",
+          "strengths": [
+            "a"
+          ],
+          "weaknesses": [
+            "b"
+          ],
+          "source": "ai_suggested"
+        },
+        {
+          "brand_name": "Acme Plumbing",
+          "main_service": "Plumbing",
+          "target_market": "Homes",
+          "key_strength": "Brand",
+          "opportunity": "Reviews",
+          "website": "https://example.com",
+          "strengths": [
+            "a"
+          ],
+          "weaknesses": [
+            "b"
+          ],
+          "source": "ai_suggested"
+        },
+        {
+          "brand_name": "Mr. Rooter",
+          "main_service": "Plumbing",
+          "target_market": "Homes",
+          "key_strength": "Brand",
+          "opportunity": "Reviews",
+          "website": "javascript:alert(1)",
+          "strengths": [
+            "a"
+          ],
+          "weaknesses": [
+            "b"
+          ],
+          "source": "ai_suggested"
+        },
+        {
+          "brand_name": "Benjamin Franklin Plumbing",
+          "main_service": "Plumbing",
+          "target_market": "Homes",
+          "key_strength": "Brand",
+          "opportunity": "Reviews",
+          "website": null,
+          "strengths": [
+            "a"
+          ],
+          "weaknesses": [
+            "b"
+          ],
+          "source": "ai_suggested"
+        }
+      ],
+      "competitive_advantages": [
+        "Fast response"
+      ],
+      "positioning_opportunities": [
+        "Collect reviews"
+      ]
+    },
+    "target_search_queries": [
+      {
+        "query": "query 0",
+        "platforms": [
+          "Google"
+        ],
+        "intent": "Service Search",
+        "business_relevance": "High",
+        "target_audience": "Homeowners"
+      },
+      {
+        "query": "query 1",
+        "platforms": [
+          "Facebook"
+        ],
+        "intent": "Service Search",
+        "business_relevance": "High",
+        "target_audience": "Homeowners"
+      },
+      {
+        "query": "query 2",
+        "platforms": [
+          "Instagram"
+        ],
+        "intent": "Service Search",
+        "business_relevance": "High",
+        "target_audience": "Homeowners"
+      },
+      {
+        "query": "query 3",
+        "platforms": [
+          "LinkedIn"
+        ],
+        "intent": "Service Search",
+        "business_relevance": "High",
+        "target_audience": "Homeowners"
+      },
+      {
+        "query": "query 4",
+        "platforms": [
+          "X"
+        ],
+        "intent": "Service Search",
+        "business_relevance": "High",
+        "target_audience": "Homeowners"
+      }
+    ],
+    "seo_improvements": {
+      "primary_keyword": "emergency plumber austin",
+      "secondary_keywords": [
+        "plumber austin"
+      ],
+      "long_tail_keywords": [
+        "24/7 emergency plumber in austin tx"
+      ],
+      "business_keywords": [
+        "drain cleaning"
+      ],
+      "recommended_title": "Emergency Plumber Austin TX | 24/7 Drain Cleaning, Water Heater Repair | Acme Plumbing",
+      "title_structure": "Keyword | Benefit | Brand",
+      "meta_description": "Acme Plumbing offers 24/7 emergency plumber services in Austin, TX, including drain cleaning, leak detection and water heater repair for homes and small businesses across the city.",
+      "supporting_content": [
+        {
+          "type": "faq",
+          "title": "Plumbing FAQ",
+          "rationale": "Long-tail queries"
+        }
+      ]
+    },
+    "top_services": [
+      {
+        "name": "Drain cleaning",
+        "description": "Clears clogs",
+        "target_industry": "Residential",
+        "target_customer": "Homeowners",
+        "main_benefit": "Fast relief",
+        "source": "website"
+      }
+    ],
+    "target_audience": {
+      "primary_audience": [
+        "Homeowners"
+      ],
+      "secondary_audience": [
+        "Landlords"
+      ],
+      "industries": [
+        "Residential"
+      ],
+      "business_types": [
+        "Small businesses"
+      ],
+      "customer_profiles": [
+        "Busy families"
+      ],
+      "geographic_focus": "Austin, TX",
+      "customer_needs": [
+        "Fast repairs"
+      ],
+      "customer_interests": [
+        "Home improvement"
+      ],
+      "recommended_segments": [
+        {
+          "audience": "Homeowners",
+          "business_type": "B2C",
+          "requirement": "Repairs"
+        }
+      ]
+    }
+  },
+  "meta": {
+    "provider": "gemini",
+    "model_used": "gemini-3.8-flash",
+    "input_tokens": 4210,
+    "output_tokens": 1845,
+    "pages_analyzed": 2,
+    "cached": false,
+    "processing_ms": 1850,
+    "warnings": [
+      "Competitors are AI-generated suggestions from general knowledge and have not been verified against live sources."
+    ]
+  }
+}

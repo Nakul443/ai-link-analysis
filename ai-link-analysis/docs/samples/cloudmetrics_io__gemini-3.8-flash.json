@@ -1,0 +1,251 @@
+{
+  "success": true,
+  "website": "https://cloudmetrics.io/",
+  "brand": {
+    "name": "CloudMetrics",
+    "category": "Cloud Monitoring SaaS",
+    "summary": "Real-time observability platform for Kubernetes clusters."
+  },
+  "analysis": {
+    "competitor_analysis": {
+      "brand_overview": "Cloud observability SaaS offering live metrics and traces.",
+      "business_category": "DevOps & Observability",
+      "main_products_services": [
+        "Kubernetes APM",
+        "Distributed Tracing",
+        "Log Management"
+      ],
+      "your_brand": {
+        "brand_name": "CloudMetrics",
+        "main_service": "Cluster APM",
+        "target_market": "Mid-market DevOps teams",
+        "key_strength": "Zero-config instrumentation",
+        "opportunity": "AI-driven root cause analysis"
+      },
+      "competitors": [
+        {
+          "brand_name": "Datadog",
+          "main_service": "Full-stack observability",
+          "target_market": "Enterprise",
+          "key_strength": "Extensive integration ecosystem",
+          "opportunity": "Pricing transparency",
+          "website": "https://datadoghq.com",
+          "strengths": [
+            "Deep market share",
+            "End-to-end suite"
+          ],
+          "weaknesses": [
+            "Complex unpredictable billing"
+          ],
+          "source": "ai_suggested"
+        },
+        {
+          "brand_name": "Dynatrace",
+          "main_service": "Enterprise APM",
+          "target_market": "Global enterprise",
+          "key_strength": "Automated Davis AI engine",
+          "opportunity": "Lightweight SMB packaging",
+          "website": "https://dynatrace.com",
+          "strengths": [
+            "Enterprise scalability"
+          ],
+          "weaknesses": [
+            "Steep onboarding curve"
+          ],
+          "source": "ai_suggested"
+        },
+        {
+          "brand_name": "New Relic",
+          "main_service": "Observability telemetry platform",
+          "target_market": "Mid-market to enterprise",
+          "key_strength": "Generous free tier",
+          "opportunity": "Kubernetes native UX",
+          "website": "https://newrelic.com",
+          "strengths": [
+            "Usage-based billing"
+          ],
+          "weaknesses": [
+            "Legacy baggage in UI"
+          ],
+          "source": "ai_suggested"
+        }
+      ],
+      "competitive_advantages": [
+        "Flat-rate pricing",
+        "Under 5-minute setup",
+        "Low CPU daemon overhead"
+      ],
+      "positioning_opportunities": [
+        "Target engineers frustrated with enterprise bill shocks"
+      ]
+    },
+    "target_search_queries": [
+      {
+        "query": "kubernetes cluster monitoring tool",
+        "platforms": [
+          "Google"
+        ],
+        "intent": "Commercial Investigation",
+        "business_relevance": "Primary product search",
+        "target_audience": "DevOps Engineers"
+      },
+      {
+        "query": "datadog alternative flat pricing",
+        "platforms": [
+          "Google",
+          "X"
+        ],
+        "intent": "Competitor Comparison",
+        "business_relevance": "High-converting replacement search",
+        "target_audience": "VP of Engineering"
+      },
+      {
+        "query": "how to debug pod crashloopbackoff prometheus",
+        "platforms": [
+          "Google"
+        ],
+        "intent": "Informational / Problem",
+        "business_relevance": "Top of funnel educational search",
+        "target_audience": "Platform Engineers"
+      },
+      {
+        "query": "distributed tracing best practices microservices",
+        "platforms": [
+          "LinkedIn",
+          "X"
+        ],
+        "intent": "Thought Leadership",
+        "business_relevance": "Industry authority and engagement",
+        "target_audience": "Software Architects"
+      },
+      {
+        "query": "modern observability stack kubernetes",
+        "platforms": [
+          "Facebook",
+          "Instagram",
+          "LinkedIn"
+        ],
+        "intent": "Community Discovery",
+        "business_relevance": "Brand awareness in developer communities",
+        "target_audience": "Tech Leads"
+      }
+    ],
+    "seo_improvements": {
+      "primary_keyword": "kubernetes monitoring tool",
+      "secondary_keywords": [
+        "datadog alternative",
+        "cloud apm",
+        "distributed tracing software"
+      ],
+      "long_tail_keywords": [
+        "lightweight kubernetes cluster observability platform",
+        "real time pod monitoring with alerts"
+      ],
+      "business_keywords": [
+        "devops observability",
+        "cloud native apm",
+        "kubernetes metrics dashboard"
+      ],
+      "recommended_title": "Kubernetes Monitoring Tool | Fast Observability | CloudMetrics",
+      "title_structure": "Primary Keyword | Key Benefit | Brand",
+      "meta_description": "CloudMetrics is a fast, lightweight Kubernetes monitoring tool. Get full-stack observability, distributed tracing, and clear flat-rate pricing.",
+      "supporting_content": [
+        {
+          "type": "service_landing_page",
+          "title": "Kubernetes Application Performance Monitoring",
+          "rationale": "Core service feature page"
+        },
+        {
+          "type": "blog_topic",
+          "title": "Why We Built an Alternative to Per-Host Observability Billing",
+          "rationale": "Viral conversion topic for tech leaders"
+        },
+        {
+          "type": "faq",
+          "title": "Kubernetes APM & Tracing FAQ",
+          "rationale": "Captures long-tail technical queries"
+        }
+      ]
+    },
+    "top_services": [
+      {
+        "name": "Kubernetes Cluster Monitoring",
+        "description": "Real-time telemetry and pod metrics visualization.",
+        "target_industry": "Tech / SaaS",
+        "target_customer": "Platform Engineers",
+        "main_benefit": "Prevent downtime before it impacts users",
+        "source": "website"
+      },
+      {
+        "name": "Distributed Tracing",
+        "description": "End-to-end request tracing across microservices.",
+        "target_industry": "Cloud Native",
+        "target_customer": "Backend Developers",
+        "main_benefit": "Pinpoint latency bottlenecks in seconds",
+        "source": "website"
+      },
+      {
+        "name": "Automated Root Cause Insights",
+        "description": "AI heuristics correlating deployment changes with error spikes.",
+        "target_industry": "DevOps",
+        "target_customer": "Site Reliability Engineers",
+        "main_benefit": "Reduce MTTR by 60%",
+        "source": "inferred"
+      }
+    ],
+    "target_audience": {
+      "primary_audience": [
+        "DevOps Engineers",
+        "Platform Architects"
+      ],
+      "secondary_audience": [
+        "CTOs",
+        "VPs of Engineering",
+        "SREs"
+      ],
+      "industries": [
+        "SaaS",
+        "Fintech",
+        "E-commerce",
+        "Cloud Services"
+      ],
+      "business_types": [
+        "Growth Stage Startups",
+        "Mid-market Tech Companies"
+      ],
+      "customer_profiles": [
+        "Teams running 20+ microservices on Kubernetes"
+      ],
+      "geographic_focus": "Global",
+      "customer_needs": [
+        "Predictable billing",
+        "Fast zero-instrumentation setup",
+        "Low memory footprint"
+      ],
+      "customer_interests": [
+        "Cloud native tools",
+        "OpenTelemetry",
+        "Golang infrastructure"
+      ],
+      "recommended_segments": [
+        {
+          "audience": "Platform Engineers",
+          "business_type": "B2B Mid-Market",
+          "requirement": "Instant multi-cluster visibility with single daemon install"
+        }
+      ]
+    }
+  },
+  "meta": {
+    "provider": "gemini",
+    "model_used": "gemini-3.8-flash",
+    "input_tokens": 4150,
+    "output_tokens": 1920,
+    "pages_analyzed": 2,
+    "cached": false,
+    "processing_ms": 1910,
+    "warnings": [
+      "Competitors are AI-generated suggestions from general knowledge and have not been verified against live sources."
+    ]
+  }
+}
