@@ -15,15 +15,11 @@ After running the benchmark or smoke testing, open the generated outputs (e.g. f
 
 | Site | Model | Brand | Services | Competitors | Queries | SEO | Audience | Total /30 |
 |---|---|---|---|---|---|---|---|---|
-| plumbing-austin.com | gemini-3.8-flash | 5 | 5 | 4 | 5 | 5 | 4 | 28 |
-| saas-analytics.io | gemini-3.8-flash | 5 | 4 | 4 | 5 | 5 | 5 | 28 |
-| local-bakery.com | gemini-3.8-flash | 5 | 5 | 4 | 4 | 5 | 4 | 27 |
-| (untested) | gemini-3.7-flash | - | - | - | - | - | - | - |
-| (untested) | gpt-5.6-luna | - | - | - | - | - | - | - |
-| (untested) | claude-haiku-5-5 | - | - | - | - | - | - | - |
+| not measured yet | gemini-3.8-flash | - | - | - | - | - | - | not measured yet |
+| not measured yet | gemini-3.7-flash | - | - | - | - | - | - | not measured yet |
+| not measured yet | gpt-5.6-luna | - | - | - | - | - | - | not measured yet |
+| not measured yet | claude-haiku-5-5 | - | - | - | - | - | - | not measured yet |
 
-**Averages per model:**
-- `gemini-3.8-flash`: 27.7 / 30 (`MEASURED` via smoke and structured validation test cases)
-- `gemini-3.7-flash`: Not measured directly due to provider endpoint availability; expected parity with 3.8 Flash (`ESTIMATE`).
-- `gpt-5.6-luna` / `claude-haiku-5-5`: Not measured live (no active keys configured); estimates derived from provider specifications (`SOURCE`).
+**Averages per model:** not measured yet
+
 

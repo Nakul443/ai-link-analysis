@@ -10,7 +10,11 @@ FastAPI service that analyzes any website URL with an LLM and returns competitor
 
 ## How it works
 
-$$\text{URL} \longrightarrow \text{Format \& SSRF Validation} \longrightarrow \text{Safe Fetch (Manual Redirects)} \longrightarrow \text{HTML Cleanup} \longrightarrow \text{Single LLM Call} \longrightarrow \text{Pydantic Validation} \longrightarrow \text{Post-Processing} \longrightarrow \text{JSON Response}$$
+```text
+URL -> validate (format + SSRF) -> safe fetch (manual redirects, each hop re-checked)
+    -> HTML cleanup -> single LLM call -> Pydantic validation (1 repair, fallback model)
+    -> post-processing -> JSON response
+```
 
 1. **Validation & SSRF Protection:** Validates scheme (`http`/`https`) and ports (80/443). Blocks private, loopback, link-local, cloud metadata, NAT64, and 6to4 IP addresses.
 2. **Safe Multi-Page Fetching:** Connects using `httpx`, manually follows redirects (max 3), re-verifying SSRF on every hop. Fetches homepage plus up to 2 high-value sub-pages (e.g., `/services`, `/about`).
@@ -28,7 +32,7 @@ $$\text{URL} \longrightarrow \text{Format \& SSRF Validation} \longrightarrow \t
 
 ### Installation
 ```bash
-git clone https://github.com/Nakul443/ai-link-analysis.git && cd ai-link-analysis/ai-link-analysis
+git clone https://github.com/Nakul443/ai-link-analysis.git && cd ai-link-analysis
 python3 -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env    # Configure your LLM_API_KEY and model IDs
@@ -96,27 +100,27 @@ curl -X POST http://localhost:4000/link-analysis \
   "success": true,
   "website": "https://example.com/",
   "brand": {
-    "name": "Acme Plumbing",
+    "name": "Example Services",
     "category": "Home services",
-    "summary": "Plumbers in Austin offering emergency pipe, drain, and heater repairs."
+    "summary": "Example services provider in Austin offering emergency pipe, drain, and heater repairs."
   },
   "analysis": {
     "competitor_analysis": {
-      "brand_overview": "Local plumbing company serving residential and small business clients.",
-      "business_category": "Plumbing & Drain Services",
+      "brand_overview": "Local company serving residential and small business clients.",
+      "business_category": "Home & Drain Services",
       "main_products_services": ["Drain cleaning", "Leak detection", "Water heater repair"],
       "your_brand": {
-        "brand_name": "Acme Plumbing",
-        "main_service": "Emergency plumbing repairs",
+        "brand_name": "Example Services",
+        "main_service": "Emergency repairs",
         "target_market": "Austin metropolitan homes",
         "key_strength": "24/7 rapid response",
         "opportunity": "Online review collection and local SEO"
       },
       "competitors": [
         {
-          "brand_name": "Roto-Rooter",
-          "website": "https://roto-rooter.com",
-          "main_service": "Plumbing and drain cleaning",
+          "brand_name": "National Competitor",
+          "website": "https://competitor.example",
+          "main_service": "Repair and drain cleaning",
           "target_market": "Commercial and residential",
           "key_strength": "National brand recognition",
           "opportunity": "Transparent pricing",
@@ -126,18 +130,18 @@ curl -X POST http://localhost:4000/link-analysis \
         }
       ],
       "competitive_advantages": ["Fast emergency response", "Transparent local pricing"],
-      "positioning_opportunities": ["Become the go-to emergency plumbing choice in North Austin"]
+      "positioning_opportunities": ["Become the go-to emergency choice in North Austin"]
     },
     "target_search_queries": [
       {
-        "query": "24/7 emergency plumber austin",
+        "query": "24/7 emergency service austin",
         "platforms": ["Google"],
         "intent": "Emergency Commercial Intent",
         "business_relevance": "Primary high-converting service inquiry",
         "target_audience": "Homeowners experiencing sudden leaks or clogs"
       },
       {
-        "query": "best plumber recommendations austin tx",
+        "query": "best contractor recommendations austin tx",
         "platforms": ["Facebook", "X"],
         "intent": "Community Discovery & Peer Validation",
         "business_relevance": "Word-of-mouth referral capture",
@@ -145,17 +149,17 @@ curl -X POST http://localhost:4000/link-analysis \
       }
     ],
     "seo_improvements": {
-      "primary_keyword": "emergency plumber austin",
-      "secondary_keywords": ["plumber austin", "drain cleaning austin tx", "water heater repair"],
+      "primary_keyword": "emergency service austin",
+      "secondary_keywords": ["emergency repairs austin", "drain cleaning austin tx", "water heater repair"],
       "long_tail_keywords": ["24/7 emergency water heater repair austin", "clogged sewer line clearing austin"],
-      "business_keywords": ["residential plumbing contractor", "licensed plumbers austin"],
-      "recommended_title": "Emergency Plumber Austin TX | Fast Drain & Pipe Repair | Acme",
+      "business_keywords": ["residential repair contractor", "licensed contractor austin"],
+      "recommended_title": "Emergency Service Austin TX | Fast Drain & Pipe Repair",
       "title_structure": "Primary Keyword | Key Benefit | Brand Name",
-      "meta_description": "Acme Plumbing provides 24/7 emergency plumbing, drain cleaning, and water heater repair in Austin, TX. Fast, licensed local plumbers. Call now!",
+      "meta_description": "Example Services provides 24/7 emergency service, drain cleaning, and water heater repair in Austin, TX. Fast, licensed local technicians. Call now!",
       "supporting_content": [
         {
           "type": "faq",
-          "title": "Emergency Plumbing FAQs: Costs, Arrival Times & What to Do",
+          "title": "Emergency FAQs: Costs, Arrival Times & What to Do",
           "rationale": "Answers common urgent homeowner questions to improve search click-through."
         }
       ]
@@ -170,7 +174,7 @@ curl -X POST http://localhost:4000/link-analysis \
         "source": "website"
       },
       {
-        "name": "Preventative Plumbing Inspections",
+        "name": "Preventative Inspections",
         "description": "Annual video inspection of pipes to detect hairline fractures.",
         "target_industry": "Residential",
         "target_customer": "Home buyers and property managers",
@@ -191,7 +195,7 @@ curl -X POST http://localhost:4000/link-analysis \
         {
           "audience": "Urgent Emergency Homeowners",
           "business_type": "B2C",
-          "requirement": "Immediate same-day dispatch for broken pipes"
+          "requirement": "Immediate same-day dispatch for repairs"
         }
       ]
     }
@@ -199,8 +203,8 @@ curl -X POST http://localhost:4000/link-analysis \
   "meta": {
     "provider": "gemini",
     "model_used": "gemini-3.8-flash",
-    "input_tokens": 4210,
-    "output_tokens": 1845,
+    "input_tokens": null,
+    "output_tokens": null,
     "pages_analyzed": 2,
     "cached": false,
     "processing_ms": 1850,
@@ -276,13 +280,15 @@ Candidate models evaluated for cost, latency, token consumption, and structured 
 | OpenAI | `gpt-5.6-luna` | $0.20 / $1.20 | 1.05M / 128K | Structured Outputs | None |
 | Anthropic | `claude-haiku-5-5` | $0.10 / $0.50 | 1M / 128K | Prompt + Validation | None |
 
-### Measured / Estimated Benchmarks
+### Model Benchmarks
+Cost estimates assume 5,000 input tokens and 3,000 output tokens (`ESTIMATE`):
+
 | Model | Evaluated | Success | Single Call | Median s | Avg in tok | Avg out tok | $/analysis (Intro) | $/analysis (2027) | Title <=60 | Meta <=160 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `gemini-3.8-flash` | MEASURED | 100% | 100% | 1.8s | 4,200 | 1,850 | $0.0101 | $0.0202 | 100% | 100% |
-| `gemini-3.7-flash` | ESTIMATE | 100% | 100% | ~2.1s | ~4,200 | ~1,800 | $0.0099 | $0.0198 | 100% | 100% |
-| `gpt-5.6-luna` | ESTIMATE | Parity | High | ~1.5s | ~4,200 | ~1,500 | $0.0026 | $0.0026 | High | High |
-| `claude-haiku-5-5`| ESTIMATE | Parity | High | ~1.2s | ~4,200 | ~1,500 | $0.0012 | $0.0012 | High | High |
+| `gemini-3.8-flash` | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | ~$0.0150 | ~$0.0300 | not measured yet | not measured yet |
+| `gemini-3.7-flash` | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | ~$0.0150 | ~$0.0300 | not measured yet | not measured yet |
+| `gpt-5.6-luna` | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | ~$0.0046 | ~$0.0046 | not measured yet | not measured yet |
+| `claude-haiku-5-5`| not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | ~$0.0020 | ~$0.0020 | not measured yet | not measured yet |
 
 **Final Recommendation:**
 - **Primary:** `gemini-3.8-flash` (provides $0 free-tier operations for evaluation and robust native JSON generation).

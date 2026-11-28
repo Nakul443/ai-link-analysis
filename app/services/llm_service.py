@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 T = TypeVar("T", bound=BaseModel)
 
-RETRY_BACKOFF_BASE = 0.5  # seconds; tests set this to 0
+RETRY_BACKOFF_BASE = 2.0  # seconds; tests set this to 0
 
 
 # ---------- Errors (each has a code for B6 to map) ----------

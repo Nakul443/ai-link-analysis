@@ -13,51 +13,51 @@
 
 `SOURCE` links are listed at the bottom.
 
-## 2. Speed and accuracy: MEASURED vs ESTIMATED
+## 2. Speed and accuracy: ESTIMATE
 
-**Method:** The analysis prompt (`app/services/analysis_service.py`) was evaluated through automated test suites and real smoke invocations. Latency = wall-clock time of the LLM call(s) only. Cost = tokens $\times$ list prices above.
+**Method:** Candidate models are evaluated using the real analysis prompt (`app/services/analysis_service.py`) via `scripts/benchmark.py`. Latency = wall-clock time of the LLM call(s) only. Cost = tokens x list prices above.
 
 | Model | Evaluated | Success | Single Call | Median s | Avg in tok | Avg out tok | $/analysis (Intro) | $/analysis (2027) | Title <=60 | Meta <=160 | 5/5 platforms | >=3 competitors |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| `gemini-3.8-flash` | MEASURED | 100% | 100% | 1.8s | 4,200 | 1,850 | $0.0101 | $0.0202 | 100% | 100% | 100% | 100% |
-| `gemini-3.7-flash` | ESTIMATE | 100% | 100% | ~2.1s | ~4,200 | ~1,800 | $0.0099 | $0.0198 | 100% | 100% | 100% | 100% |
-| `gpt-5.6-luna` | ESTIMATE | Parity | High | ~1.5s | ~4,200 | ~1,500 | $0.0026 | $0.0026 | High | High | High | High |
-| `claude-haiku-5-5`| ESTIMATE | Parity | High | ~1.2s | ~4,200 | ~1,500 | $0.0012 | $0.0012 | High | High | High | High |
+| `gemini-3.8-flash` | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | ~$0.0150 | ~$0.0300 | not measured yet | not measured yet | not measured yet | not measured yet |
+| `gemini-3.7-flash` | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | ~$0.0150 | ~$0.0300 | not measured yet | not measured yet | not measured yet | not measured yet |
+| `gpt-5.6-luna` | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | ~$0.0046 | ~$0.0046 | not measured yet | not measured yet | not measured yet | not measured yet |
+| `claude-haiku-5-5`| not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | ~$0.0020 | ~$0.0020 | not measured yet | not measured yet | not measured yet | not measured yet |
 
-*Note: OpenAI and Anthropic models were not measured live due to lack of API keys; figures are estimated based on published token specifications and pricing (`SOURCE`).*
+*Note: Models without active live benchmark outputs are labelled not measured yet. Cost figures are ESTIMATE assuming 5,000 input tokens and 3,000 output tokens.*
 
 **Automatic quality checks** (script-computed, objective): single-call success (no retry/repair needed), SEO title <= 60 chars, meta description <= 160 chars, all 5 platforms covered by the queries, >= 3 valid competitors after cleaning, share of services labelled `website` whose name words actually appear in the fetched page (grounding).
 
-**Accuracy (human rubric):** Summarized from `docs/accuracy_scoring.md`: `gemini-3.8-flash` scored an average of 27.7 / 30 across evaluated brand archetypes.
+**Accuracy (human rubric):** See `docs/accuracy_scoring.md` (averages: not measured yet).
 
 **Limitations:** Small sample: results are indicative. Free-tier rate limits enforce per-minute restrictions. No ground-truth dataset exists for competitor or SEO quality, so accuracy is evaluated using a manual 1-5 rubric.
 
-## 3. Cost per analysis: ESTIMATE vs MEASURED
+## 3. Cost per analysis: ESTIMATE
 
 Cost = input_tokens x input_price + output_tokens x output_price.
 
-Measured / estimated token usage per analysis:
-- Input: ~4,200 tokens (static instructions + budgeted website text capped by `MAX_CONTENT_CHARS`).
-- Output: ~1,850 tokens of structured JSON (including thinking tokens where applicable).
+Assumed token usage per analysis (`ESTIMATE`):
+- Input about 5,000 tokens: about 1,700 static (rules + JSON template) + up to 12,000 chars (about 3,000 tokens) of cleaned website text, capped by `MAX_CONTENT_CHARS`.
+- Output about 3,000 tokens of JSON (Gemini "thinking" tokens are billed as output, so real Gemini output may be higher).
 
 | Model | Per analysis | Per 1,000 analyses | Type |
 |---|---|---|---|
-| Gemini Flash (3.7 / 3.8), introductory price | ~$0.0101 | ~$10.10 | MEASURED / ESTIMATE |
-| Gemini Flash (3.7 / 3.8), from 2027-01-01 | ~$0.0202 | ~$20.20 | ESTIMATE |
-| GPT-5.6 Luna | ~$0.0026 | ~$2.64 | ESTIMATE |
-| Claude Haiku 5.5 | ~$0.0012 | ~$1.17 | ESTIMATE |
-| Gemini Flash on the free tier | $0 (quota-limited) | $0 | MEASURED |
+| Gemini Flash (3.7 / 3.8), introductory price | about $0.0150 | about $15 | ESTIMATE |
+| Gemini Flash (3.7 / 3.8), from 2027-01-01 | about $0.0300 | about $30 | ESTIMATE |
+| GPT-5.6 Luna | about $0.0046 | about $4.60 | ESTIMATE |
+| Claude Haiku 5.5 | about $0.0020 | about $2.00 | ESTIMATE |
+| Gemini Flash on the free tier | $0 (quota-limited) | $0 | ESTIMATE |
 
 ## 4. Selection against the six criteria
 
 | Criterion | Finding |
 |---|---|
-| 1. Accuracy understanding website content | Grounded in website content via anti-prompt injection delimiters. 27.7/30 on evaluation rubric. |
-| 2. Fast response | ~1.8s median latency for `gemini-3.8-flash` (`MEASURED`). |
-| 3. Low API cost | On paid pricing Haiku 5.5 < Luna < Gemini Flash. On the free tier, Gemini is $0 (`MEASURED`). |
-| 4. Reliable structured JSON | Native JSON mode (`responseMimeType: application/json`) ensures 100% Pydantic v2 validation pass rate (`MEASURED`). |
-| 5. Competitor and SEO insight | Competitors sanitized and labeled `ai_suggested`. SEO titles/descriptions fit strictly within character limits (`MEASURED`). |
-| 6. Large content | All candidates accept at least 1M tokens. Pipeline sends budgeted ~3K tokens of clean text, so context is never a bottleneck (`MEASURED`). |
+| 1. Accuracy understanding website content | Grounded in website content via anti-prompt injection delimiters. Subject to human rubric verification in `docs/accuracy_scoring.md`. |
+| 2. Fast response | not measured yet |
+| 3. Low API cost | On paid pricing Haiku 5.5 < Luna < Gemini Flash. On the free tier, Gemini is $0 (`ESTIMATE`). |
+| 4. Reliable structured JSON | Native JSON mode (`responseMimeType: application/json`) and Pydantic validation with single repair retry. |
+| 5. Competitor and SEO insight | Competitors sanitized and labeled `ai_suggested`. SEO titles/descriptions fit strictly within character limits. |
+| 6. Large content | All candidates accept at least 1M tokens. Pipeline sends budgeted ~3K tokens of clean text, so context is never a bottleneck. |
 
 ## 5. Cost optimization
 
@@ -86,10 +86,10 @@ Not implemented (options for production):
 - **Provider:** Google Gemini
 - **Primary model:** `gemini-3.8-flash`
 - **Fallback model:** `gemini-3.7-flash` (or alternative available tier in AI Studio)
-- **Measured input tokens:** ~4,200 tokens (`MEASURED`)
-- **Measured output tokens:** ~1,850 tokens (`MEASURED`)
-- **Cost per analysis:** $0 on the free tier (`MEASURED`); ~$0.0101 at introductory paid tier (`ESTIMATE`)
-- **Expected response time:** ~1.8s median LLM time (`MEASURED`); end-to-end (fetch + LLM) is reported in each response as `meta.processing_ms`
+- **Estimated input tokens:** about 5,000 tokens (`ESTIMATE`)
+- **Estimated output tokens:** about 3,000 tokens (`ESTIMATE`)
+- **Cost per analysis:** $0 on the free tier (`ESTIMATE`); ~$0.0150 at introductory paid tier (`ESTIMATE`)
+- **Expected response time:** not measured yet
 
 **Why:**
 1. The free tier allows evaluating and running the public demo without API cost.
