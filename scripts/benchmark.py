@@ -22,6 +22,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import httpx
+
 from app.config import get_settings
 from app.schemas import LLMAnalysisResult, Platform
 from app.services import llm_service
