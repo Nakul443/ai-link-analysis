@@ -369,6 +369,12 @@ curl -X POST http://localhost:4000/link-analysis \
 
 Full raw JSON samples are available in [`docs/samples/`](docs/samples/).
 
+## Screenshots
+
+![Success](docs/screenshots/success-response.png)
+![Blocked URL](docs/screenshots/blocked-url.png)
+![Tests](docs/screenshots/tests-passing.png)
+
 ---
 
 ## Error Handling
