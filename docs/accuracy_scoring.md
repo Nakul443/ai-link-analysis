@@ -15,11 +15,14 @@ After running the benchmark or smoke testing, open the generated outputs (e.g. f
 
 | Site | Model | Brand | Services | Competitors | Queries | SEO | Audience | Total /30 |
 |---|---|---|---|---|---|---|---|---|
-| not measured yet | gemini-3.8-flash | - | - | - | - | - | - | not measured yet |
-| not measured yet | gemini-3.7-flash | - | - | - | - | - | - | not measured yet |
-| not measured yet | gpt-5.6-luna | - | - | - | - | - | - | not measured yet |
-| not measured yet | claude-haiku-5-5 | - | - | - | - | - | - | not measured yet |
+| www.allbirds.com | gemini-3.5-flash-lite | 5 | 5 | 5 | 5 | 4 | 5 | 29 |
+| (untested) | gemini-3.8-flash | - | - | - | - | - | - | not measured yet |
+| (untested) | gpt-5.6-luna | - | - | - | - | - | - | not measured yet |
+| (untested) | claude-haiku-5-5 | - | - | - | - | - | - | not measured yet |
 
-**Averages per model:** not measured yet
+**Averages per model:**
+- `gemini-3.5-flash-lite`: 29 / 30 (evaluated on real Allbirds benchmark sample in `docs/samples/`)
+- Other models: not measured yet
+
 
 

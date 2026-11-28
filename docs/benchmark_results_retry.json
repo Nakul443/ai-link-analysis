@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-28",
+  "schema_in_prompt": false,
+  "rows": [
+    {
+      "url": "https://basecamp.com",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ok": false,
+      "error": "LLM_UNAVAILABLE",
+      "latency_s": 25.05,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "calls": 2,
+      "single_call": false
+    },
+    {
+      "url": "https://thoughtbot.com",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ok": false,
+      "error": "LLM_UNAVAILABLE",
+      "latency_s": 20.71,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "calls": 2,
+      "single_call": false
+    },
+    {
+      "url": "https://www.allbirds.com",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ok": false,
+      "error": "LLM_UNAVAILABLE",
+      "latency_s": 23.17,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "calls": 2,
+      "single_call": false
+    }
+  ],
+  "summary": [
+    {
+      "model": "gemini-3.5-flash-lite",
+      "runs": 3,
+      "success_rate": 0.0,
+      "single_call_rate": null,
+      "latency_median_s": null,
+      "latency_mean_s": null,
+      "avg_input_tokens": null,
+      "avg_output_tokens": null,
+      "cost_per_analysis_usd": null,
+      "cost_per_analysis_2027_usd": null,
+      "title_ok_rate": null,
+      "meta_ok_rate": null,
+      "platform_coverage": null,
+      "competitors_ok_rate": null,
+      "services_grounded": null
+    }
+  ]
+}

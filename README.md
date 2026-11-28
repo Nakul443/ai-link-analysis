@@ -59,8 +59,8 @@ LOG_LEVEL=INFO
 # LLM Configuration (supports: gemini | openai | anthropic)
 LLM_PROVIDER=gemini
 LLM_API_KEY=your_api_key_here
-LLM_MODEL=gemini-3.8-flash
-LLM_FALLBACK_MODEL=gemini-3.7-flash
+LLM_MODEL=gemini-3.5-flash-lite
+LLM_FALLBACK_MODEL=gemini-3.8-flash
 LLM_MAX_OUTPUT_TOKENS=8192
 LLM_TEMPERATURE=0.2
 LLM_TIMEOUT_SECONDS=60
@@ -91,123 +91,275 @@ CORS_ORIGINS=http://localhost:5173,http://localhost:3000
 ```bash
 curl -X POST http://localhost:4000/link-analysis \
   -H "Content-Type: application/json" \
-  -d '{"url":"https://example.com"}'
+  -d '{"url":"https://www.allbirds.com"}'
 ```
 
 ### Response (Trimmed)
 ```json
 {
   "success": true,
-  "website": "https://example.com/",
+  "website": "https://www.allbirds.com",
   "brand": {
-    "name": "Example Services",
-    "category": "Home services",
-    "summary": "Example services provider in Austin offering emergency pipe, drain, and heater repairs."
+    "name": "Allbirds",
+    "category": "Sustainable Footwear and Apparel",
+    "summary": "Allbirds designs and manufactures comfortable shoes, sneakers, slip-ons, and apparel using natural and sustainable materials like merino wool, eucalyptus tree fiber, and sugarcane-based SweetFoam."
   },
   "analysis": {
     "competitor_analysis": {
-      "brand_overview": "Local company serving residential and small business clients.",
-      "business_category": "Home & Drain Services",
-      "main_products_services": ["Drain cleaning", "Leak detection", "Water heater repair"],
+      "brand_overview": "Allbirds is a prominent eco-friendly lifestyle brand known for pioneering sustainable footwear using natural and renewable materials, catering to everyday consumers seeking comfort and minimal environmental impact.",
+      "business_category": "Direct-to-Consumer Footwear and Apparel",
+      "main_products_services": [
+        "Men's and Women's Sneakers",
+        "Slip-ons and Canvas Shoes",
+        "All-Weather Footwear",
+        "Socks and Apparel",
+        "Digital Gift Cards"
+      ],
       "your_brand": {
-        "brand_name": "Example Services",
-        "main_service": "Emergency repairs",
-        "target_market": "Austin metropolitan homes",
-        "key_strength": "24/7 rapid response",
-        "opportunity": "Online review collection and local SEO"
+        "brand_name": "Allbirds",
+        "main_service": "Sustainable Everyday Footwear",
+        "target_market": "Eco-conscious consumers and urban commuters looking for comfortable, lightweight footwear.",
+        "key_strength": "Proprietary sustainable materials like TENCEL Lyocell, merino wool, and SweetFoam sugarcane midsoles.",
+        "opportunity": "Expand the casual lifestyle and weather-resistant footwear lines while growing corporate bulk gifting."
       },
       "competitors": [
         {
-          "brand_name": "National Competitor",
-          "website": "https://competitor.example",
-          "main_service": "Repair and drain cleaning",
-          "target_market": "Commercial and residential",
-          "key_strength": "National brand recognition",
-          "opportunity": "Transparent pricing",
-          "strengths": ["24/7 availability", "Large fleet"],
-          "weaknesses": ["Higher franchised costs"],
+          "brand_name": "Rothy's",
+          "website": "https://www.rothys.com",
+          "main_service": "Sustainable shoes and bags made from recycled plastic bottles",
+          "target_market": "Eco-conscious urban professionals and women seeking stylish washable shoes",
+          "key_strength": "Zero-waste manufacturing process and machine-washable products",
+          "opportunity": "Target men's market segment more aggressively where Allbirds holds stronger footing",
+          "strengths": [
+            "Machine washable products",
+            "Strong appeal in women's footwear",
+            "Zero-waste knitting technology"
+          ],
+          "weaknesses": [
+            "Higher price point",
+            "Less diverse men's collection"
+          ],
+          "source": "ai_suggested"
+        },
+        {
+          "brand_name": "Vans",
+          "website": "https://www.vans.com",
+          "main_service": "Casual sneakers and skateboarding shoes",
+          "target_market": "Youth, skateboarders, and casual wear enthusiasts",
+          "key_strength": "Massive brand heritage and iconic design recognition",
+          "opportunity": "Shift consumer perception toward sustainable alternatives like Allbirds canvas options",
+          "strengths": [
+            "Iconic timeless designs",
+            "Massive global retail distribution",
+            "Affordable pricing"
+          ],
+          "weaknesses": [
+            "Slower adoption of truly sustainable, high-tech natural materials",
+            "Less focus on ergonomic everyday comfort technology"
+          ],
+          "source": "ai_suggested"
+        },
+        {
+          "brand_name": "On Running",
+          "website": "https://www.on.com",
+          "main_service": "High-performance running shoes and athletic apparel",
+          "target_market": "Runners, athletes, and athleisure consumers",
+          "key_strength": "Advanced CloudTec cushioning technology and premium athletic performance",
+          "opportunity": "Compete more directly in the high-performance running category",
+          "strengths": [
+            "Strong technical performance credentials",
+            "High brand loyalty among runners",
+            "Strong premium positioning"
+          ],
+          "weaknesses": [
+            "Higher price points",
+            "Less focus on casual everyday natural-fiber lifestyle shoes"
+          ],
           "source": "ai_suggested"
         }
       ],
-      "competitive_advantages": ["Fast emergency response", "Transparent local pricing"],
-      "positioning_opportunities": ["Become the go-to emergency choice in North Austin"]
+      "competitive_advantages": [
+        "Use of innovative natural materials such as eucalyptus tree fiber and merino wool",
+        "Proprietary sugarcane-based SweetFoam cushioning providing responsive energy return",
+        "Strong commitment to regenerative agriculture and responsible energy sourcing",
+        "Lightweight, breathable, and travel-friendly shoe construction"
+      ],
+      "positioning_opportunities": [
+        "Position products as the ultimate travel and commuting shoe for modern professionals",
+        "Emphasize the intersection of high comfort and zero-compromise environmental sustainability",
+        "Expand corporate gifting solutions for eco-conscious businesses"
+      ]
     },
     "target_search_queries": [
       {
-        "query": "24/7 emergency service austin",
-        "platforms": ["Google"],
-        "intent": "Emergency Commercial Intent",
-        "business_relevance": "Primary high-converting service inquiry",
-        "target_audience": "Homeowners experiencing sudden leaks or clogs"
+        "query": "most comfortable everyday walking sneakers",
+        "platforms": [
+          "Google"
+        ],
+        "intent": "High commercial intent to purchase comfortable daily footwear",
+        "business_relevance": "Directly matches Allbirds' core product value proposition for sneakers like the Tree Runner",
+        "target_audience": "Urban commuters and travelers looking for ergonomic comfort"
       },
       {
-        "query": "best contractor recommendations austin tx",
-        "platforms": ["Facebook", "X"],
-        "intent": "Community Discovery & Peer Validation",
-        "business_relevance": "Word-of-mouth referral capture",
-        "target_audience": "Local neighborhood homeowners"
+        "query": "best sustainable shoes made from natural materials",
+        "platforms": [
+          "Instagram"
+        ],
+        "intent": "Discovery and visual inspiration for eco-friendly fashion",
+        "business_relevance": "Highlights Allbirds' unique selling point of using eucalyptus, wool, and sugarcane",
+        "target_audience": "Eco-conscious millennials and Gen Z shoppers"
+      },
+      {
+        "query": "breathable slip on shoes for travel",
+        "platforms": [
+          "Facebook"
+        ],
+        "intent": "Local and community discovery for practical travel gear",
+        "business_relevance": "Aligns with Allbirds' slip-on and cruiser collections optimized for travel",
+        "target_audience": "Vacationers and frequent flyers"
+      },
+      {
+        "query": "corporate eco friendly employee holiday gifts bulk",
+        "platforms": [
+          "LinkedIn"
+        ],
+        "intent": "B2B inquiry for company gifting and perks",
+        "business_relevance": "Targets the digital gift card and bulk purchasing offerings for businesses",
+        "target_audience": "HR managers and corporate gifting coordinators"
+      },
+      {
+        "query": "sustainable fashion brand updates 2024",
+        "platforms": [
+          "X"
+        ],
+        "intent": "Following industry news and brand sustainability milestones",
+        "business_relevance": "Engages tech-forward and eco-conscious conversation topics regarding green business",
+        "target_audience": "Sustainability advocates and industry observers"
       }
     ],
     "seo_improvements": {
-      "primary_keyword": "emergency service austin",
-      "secondary_keywords": ["emergency repairs austin", "drain cleaning austin tx", "water heater repair"],
-      "long_tail_keywords": ["24/7 emergency water heater repair austin", "clogged sewer line clearing austin"],
-      "business_keywords": ["residential repair contractor", "licensed contractor austin"],
-      "recommended_title": "Emergency Service Austin TX | Fast Drain & Pipe Repair",
-      "title_structure": "Primary Keyword | Key Benefit | Brand Name",
-      "meta_description": "Example Services provides 24/7 emergency service, drain cleaning, and water heater repair in Austin, TX. Fast, licensed local technicians. Call now!",
+      "primary_keyword": "comfortable sustainable shoes",
+      "secondary_keywords": [
+        "eco friendly sneakers",
+        "merino wool shoes",
+        "eucalyptus tree sneakers",
+        "lightweight travel shoes"
+      ],
+      "long_tail_keywords": [
+        "most comfortable shoes for walking and travel",
+        "mens breathable tree runner sneakers",
+        "womens washable casual slip on shoes",
+        "sustainable shoes made from natural materials",
+        "eco friendly digital gift cards for business"
+      ],
+      "business_keywords": [
+        "Allbirds",
+        "SweetFoam",
+        "Tree Runner NZ",
+        "Terralux Collection",
+        "TENCEL Lyocell"
+      ],
+      "recommended_title": "Allbirds: Comfortable Sustainable Shoes & Eco-Friendly Sneakers",
+      "title_structure": "[Brand]: [Primary Benefit] [Product Category] & [Secondary Benefit]",
+      "meta_description": "Discover Allbirds, the world's most comfortable sustainable shoes made from natural materials like merino wool and eucalyptus. Shop eco-friendly sneakers today.",
       "supporting_content": [
         {
+          "type": "service_landing_page",
+          "title": "Terralux Collection Overview",
+          "rationale": "Highlights Allbirds' premium new collection designed for enhanced style and everyday wear."
+        },
+        {
+          "type": "industry_page",
+          "title": "Sustainable Materials and Regenerative Agriculture",
+          "rationale": "Explains the science and sourcing behind eucalyptus, merino wool, and SweetFoam to build trust."
+        },
+        {
           "type": "faq",
-          "title": "Emergency FAQs: Costs, Arrival Times & What to Do",
-          "rationale": "Answers common urgent homeowner questions to improve search click-through."
+          "title": "Allbirds Shoe Care and Washing Guide",
+          "rationale": "Addresses common customer inquiries regarding the maintenance of natural fiber footwear."
         }
       ]
     },
     "top_services": [
       {
-        "name": "Drain Cleaning",
-        "description": "Clearing main line and household clogs with motorized augers.",
-        "target_industry": "Residential",
-        "target_customer": "Homeowners",
-        "main_benefit": "Immediate relief from water backup",
+        "name": "Men's and Women's Sneakers",
+        "description": "Everyday lightweight sneakers crafted from breathable TENCEL Lyocell tree fiber and merino wool.",
+        "target_industry": "Footwear and Retail",
+        "target_customer": "Urban commuters, walkers, and everyday consumers",
+        "main_benefit": "All-day ergonomic comfort with a lightweight, breathable feel",
         "source": "website"
       },
       {
-        "name": "Preventative Inspections",
-        "description": "Annual video inspection of pipes to detect hairline fractures.",
-        "target_industry": "Residential",
-        "target_customer": "Home buyers and property managers",
-        "main_benefit": "Prevents catastrophic flood damage",
-        "source": "inferred"
+        "name": "Slip-ons and Canvas Shoes",
+        "description": "Easy-to-wear slip-on footwear like the Canvas Cruiser designed for effortless casual styling.",
+        "target_industry": "Footwear and Retail",
+        "target_customer": "Travelers and casual weekend wearers",
+        "main_benefit": "Convenient slip-on design with zero-hassle wearability",
+        "source": "website"
+      },
+      {
+        "name": "Digital Gift Cards",
+        "description": "Instant digital vouchers available in multiple balances and bulk options for corporate gifting.",
+        "target_industry": "Corporate Gifting and Retail",
+        "target_customer": "Gift-givers and HR professionals looking for eco-friendly rewards",
+        "main_benefit": "Flexible, zero-plastic gifting solution with instant email delivery",
+        "source": "website"
       }
     ],
     "target_audience": {
-      "primary_audience": ["Austin homeowners"],
-      "secondary_audience": ["Residential property managers", "Landlords"],
-      "industries": ["Residential Real Estate", "Property Management"],
-      "business_types": ["Single-family homes", "Multi-family duplexes"],
-      "customer_profiles": ["Busy working homeowners needing quick, reliable repairs"],
-      "geographic_focus": "Austin, TX",
-      "customer_needs": ["Rapid emergency dispatch", "Upfront honest quotes", "Clean work"],
-      "customer_interests": ["Home improvement", "Property maintenance"],
+      "primary_audience": [
+        "Eco-conscious urban consumers",
+        "Frequent travelers and commuters",
+        "Individuals prioritizing foot comfort and ergonomics"
+      ],
+      "secondary_audience": [
+        "Gift shoppers",
+        "Corporate HR and wellness managers",
+        "Athleisure fashion enthusiasts"
+      ],
+      "industries": [
+        "Retail and E-commerce",
+        "Travel and Tourism",
+        "Corporate Sustainability"
+      ],
+      "business_types": [
+        "Direct-to-Consumer (D2C) Retail",
+        "Corporate Gifting Partners"
+      ],
+      "customer_profiles": [
+        "The Urban Commuter looking for lightweight, breathable shoes for walking to work",
+        "The Conscious Shopper seeking brands with verified sustainable supply chains",
+        "The Practical Traveler needing versatile, easy-to-pack footwear"
+      ],
+      "geographic_focus": null,
+      "customer_needs": [
+        "Exceptional all-day comfort and cushioning",
+        "Sustainable products with low carbon footprints",
+        "Breathable materials that prevent heat buildup",
+        "Easy online shopping with reliable shipping and returns"
+      ],
+      "customer_interests": [
+        "Sustainable living and eco-friendly products",
+        "Casual streetwear and athleisure fashion",
+        "Travel, outdoor exploration, and active lifestyles"
+      ],
       "recommended_segments": [
         {
-          "audience": "Urgent Emergency Homeowners",
-          "business_type": "B2C",
-          "requirement": "Immediate same-day dispatch for repairs"
+          "audience": "Urban Commuters",
+          "business_type": "Direct-to-Consumer",
+          "requirement": "Lightweight sneakers with responsive cushioning for daily walking."
         }
       ]
     }
   },
   "meta": {
     "provider": "gemini",
-    "model_used": "gemini-3.8-flash",
-    "input_tokens": null,
-    "output_tokens": null,
-    "pages_analyzed": 2,
+    "model_used": "gemini-3.5-flash-lite",
+    "input_tokens": 2463,
+    "output_tokens": 2546,
+    "pages_analyzed": 1,
     "cached": false,
-    "processing_ms": 1850,
+    "processing_ms": 16500,
     "warnings": [
       "Competitors are AI-generated suggestions from general knowledge and have not been verified against live sources."
     ]
@@ -275,24 +427,29 @@ Candidate models evaluated for cost, latency, token consumption, and structured 
 
 | Provider | Model (API ID) | Input / Output ($ per 1M) | Context / Max Output | JSON Mode | Free API Tier |
 |---|---|---|---|---|---|
-| Google | `gemini-3.8-flash` | $0.75 / $3.75 | 1M / 64K | Native JSON Mode | Yes (quota limited) |
-| Google | `gemini-3.7-flash` | $0.75 / $3.75 | 1M / 64K | Native JSON Mode | Yes (quota limited) |
-| OpenAI | `gpt-5.6-luna` | $0.20 / $1.20 | 1.05M / 128K | Structured Outputs | None |
-| Anthropic | `claude-haiku-5-5` | $0.10 / $0.50 | 1M / 128K | Prompt + Validation | None |
+| Google | `gemini-3.5-flash-lite` | $0.30 / $2.50 | 1M / 64K | Native JSON Mode | Yes (available in AI Studio) |
+| Google | `gemini-3.8-flash` | $0.75 / $3.75 | 1M / 64K | Native JSON Mode | Listed in AI Studio (introductory until 2026-12-31, then 1.50/7.50) |
+| OpenAI | `gpt-5.6-luna` | $0.20 / $1.20 | 1.05M / 128K | Structured Outputs | Pricing only, not measured |
+| Anthropic | `claude-haiku-5-5` | $0.10 / $0.50 | 1M / 128K | Prompt + Validation | Pricing only, not measured |
 
-### Model Benchmarks
-Cost estimates assume 5,000 input tokens and 3,000 output tokens (`ESTIMATE`):
+### Measured Benchmark Runs
+Tested via `scripts/benchmark.py` across `https://basecamp.com`, `https://thoughtbot.com`, and `https://www.allbirds.com`:
 
-| Model | Evaluated | Success | Single Call | Median s | Avg in tok | Avg out tok | $/analysis (Intro) | $/analysis (2027) | Title <=60 | Meta <=160 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| `gemini-3.8-flash` | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | ~$0.0150 | ~$0.0300 | not measured yet | not measured yet |
-| `gemini-3.7-flash` | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | ~$0.0150 | ~$0.0300 | not measured yet | not measured yet |
-| `gpt-5.6-luna` | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | ~$0.0046 | ~$0.0046 | not measured yet | not measured yet |
-| `claude-haiku-5-5`| not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | not measured yet | ~$0.0020 | ~$0.0020 | not measured yet | not measured yet |
+**Run 1 (Initial Run):**
+| Model | Runs | Success | Single call | Median s | Mean s | Avg in tok | Avg out tok | $/analysis | $/analysis (2027 price) | Title <=60 | Meta <=160 | 5/5 platforms | >=3 competitors | Services grounded |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| gemini-3.5-flash-lite | 3 | 33% | 100% | 16.5 | 16.5 | 2463 | 2546 | $0.0071 | $0.0071 | 0% | 100% | 100% | 100% | 40% |
+
+**Run 2 (Retry Run under Load):**
+| Model | Runs | Success | Single call | Median s | Mean s | Avg in tok | Avg out tok | $/analysis | $/analysis (2027 price) | Title <=60 | Meta <=160 | 5/5 platforms | >=3 competitors | Services grounded |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| gemini-3.5-flash-lite | 3 | 0% | n/a | n/a | n/a | n/a | n/a | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
+
+*Note: Title <=60 is checked on raw model output; the API trims titles to 60 chars. Failures were mostly Google 503 overload. n=3 sites, indicative only.*
 
 **Final Recommendation:**
-- **Primary:** `gemini-3.8-flash` (provides $0 free-tier operations for evaluation and robust native JSON generation).
-- **Fallback:** `gemini-3.7-flash` (separate quota bucket).
+- **Primary:** `gemini-3.5-flash-lite` (the model validated and runnable on the free tier).
+- **Fallback:** `gemini-3.8-flash` (separate quota bucket).
 - **Scale Pick:** For commercial high-volume deployment, `claude-haiku-5-5` or `gpt-5.6-luna` reduces token costs by ~7.5x and ~2.3x respectively.
 
 Full research, cost breakdown, and human scoring rubric: [docs/LLM_RESEARCH.md](docs/LLM_RESEARCH.md) and [docs/accuracy_scoring.md](docs/accuracy_scoring.md).

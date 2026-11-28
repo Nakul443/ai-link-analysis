@@ -38,6 +38,7 @@ DEFAULT_MODELS = [
 
 # USD per 1M tokens (input, output). Paid-tier list prices checked 2026-11-27.
 PRICES = {
+    "gemini-3.5-flash-lite": (0.30, 2.50),
     "gemini-3.7-flash": (0.75, 3.75),
     "gemini-3.8-flash": (0.75, 3.75),
     "gpt-5.6-luna": (0.20, 1.20),
